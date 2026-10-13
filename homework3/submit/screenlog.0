@@ -1,0 +1,78 @@
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ cat ./run_in_container_calculatePI.sh
+[?2004l#!/bin/sh
+# This script runs the calculatePI.sh script using the container `mnxb11_al9.latest.sif` with minimum required parameters
+# -B mounts the project directory inside the container so that is visible also inside the container
+apptainer run -B /projects:/projects /projects/hep/fs11/share/mnxb11/containers/mnxb11_al9.latest.sif ./calculatePI_setup.sh
+
+
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ cat calculatepi.sbatch-yourname.sh[C
+[?2004lcat: calculatepi.sbatch-yourname.sh: No such file or directory
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ cat calculatepi.sbatch-yourname.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.she.shw.shu.shr.sha.sh
+[?2004l#!/bin/sh
+
+#SBATCH -J "MNXB11 Pi homework"
+#SBATCH --time=00:10:00
+#SBATCH -A hep2023-1-6
+#SBATCH --mem 30G
+
+# Launch the calculatePI.sh application script using the container script
+run_in_container_calculatePI.sh
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ sbatch calculatepi.sbatch-yourname.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.she.shw.shu.shr.sha.sh
+[?2004lSubmitted batch job 3886848
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ squeue -u $USER
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3886848       hep MNXB11 P   ewucok  R       0:25      1 cx10
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ scontrol show job <job_id>[K[K[K[K[K[K[K[K3886848
+[?2004lJobId=3886848 JobName=MNXB11 Pi homework
+   UserId=ewucok(400280) GroupId=ewucok(400280) MCS_label=N/A
+   Priority=65124 Nice=0 Account=hep2023-1-6 QOS=normal
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:01:15 TimeLimit=00:10:00 TimeMin=N/A
+   SubmitTime=2026-10-13T19:47:56 EligibleTime=2026-10-13T19:47:56
+   AccrueTime=2026-10-13T19:47:56
+   StartTime=2026-10-13T19:47:57 EndTime=2026-10-13T19:57:57 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-13T19:47:57 Scheduler=Main
+   Partition=hep AllocNode:Sid=cosmos1:1344322
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=cx10
+   BatchHost=cx10
+   NumNodes=1 NumCPUs=1 NumTasks=1 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=1,mem=30G,node=1,billing=1
+   AllocTRES=cpu=1,mem=30G,node=1,billing=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=1 MinMemoryNode=30G MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) Network=(null)
+   Command=/home/ewucok/git/MNXB11-homework/homework3/calculatePI/scripts/calculatepi.sbatch-ewura.sh
+   WorkDir=/home/ewucok/git/MNXB11-homework/homework3/calculatePI/scripts
+   StdErr=/home/ewucok/git/MNXB11-homework/homework3/calculatePI/scripts/slurm-3886848.out
+   StdIn=/dev/null
+   StdOut=/home/ewucok/git/MNXB11-homework/homework3/calculatePI/scripts/slurm-3886848.out
+   Power=
+   
+
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ sbatch --job-name="WASTED" calculatepi.sbatch-yourname.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.sh[1P.she.shw.shu.shr.sha.sh
+[?2004lSubmitted batch job 3886874
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ sbatch --job-name="WASTED" calculatepi.sbatch-ewura.sh
+[?2004lSubmitted batch job 3886879
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ sbatch --job-name="WASTED" calculatepi.sbatch-ewura.sh[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[29Pcontrol show job 3886848[10Pqueue -u $USER
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3886879       hep   WASTED   ewucok  R       0:08      1 cx10
+           3886874       hep   WASTED   ewucok  R       0:44      1 cx10
+           3886848       hep MNXB11 P   ewucok  R       2:35      1 cx10
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ scancel 3886879[K4
+[?2004lkewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ scancel 3886874queue -u $USER
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3886874       hep   WASTED   ewucok CG       1:25      1 cx10
+           3886879       hep   WASTED   ewucok  R       0:52      1 cx10
+           3886848       hep MNXB11 P   ewucok  R       3:19      1 cx10
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ cat nodeinfo.txt
+[?2004lcat: nodeinfo.txt: No such file or directory
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ cat nodeinfo.txt[1Psqueue -u $USER
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+           3886879       hep   WASTED   ewucok  R       6:05      1 cx10
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ squeue -u $USER
+[?2004l             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+kewucok@cosmos1:~/git/MNXB11-homework/homework3/calculatePI/scripts\[?2004h[ewucok@cosmos1 scripts]$ exit
+[?2004lexit
